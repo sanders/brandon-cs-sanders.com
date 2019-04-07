@@ -1,0 +1,93 @@
+body {
+    font: sans-serif;
+    background-color: White;
+    color: Black;
+    margin: 0;
+    padding: 0;
+}
+
+/* 
+  .class
+   #id
+*/
+
+.OuterTableClass {
+}
+
+#OuterFrameId {
+    border: Black;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #e6ecff;
+    margin: 20px;
+    padding: 20px;
+}
+
+#HeaderFrameId {	
+    background-color: transparent;
+    margin-bottom: 20px;
+}
+
+#ContentFrameId {	
+    border: Black;
+    border-style: solid;
+    border-width: 1px;
+    background-color: White;
+    padding: 20px;
+}
+
+.OpportunitySummaryClass {	
+    border: Black;
+    border-style: solid;
+    background-color: #f6f8ff;
+    border-width: 3px;
+    padding: 0px;
+}
+
+.OpportunitySummaryTitleClass {	
+    font-weight: bold;	
+    padding: 10px;
+}
+
+.OpportunitySummarySummaryClass {	
+    padding: 20px;
+}
+
+
+.FavoritesListClass {	
+    border: Black;
+    border-style: solid;
+    background-color: White;
+    border-width: 3px;
+    padding: 0px;
+}
+
+.FavoritesListTitleClass {	
+    border: Black;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    font-weight: bold;	
+    padding: 10px;
+}
+
+.FavoriteClass {	
+    border: Black;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    padding: 20px;
+}
+
+
+.InfoCategoryClass {	
+    padding: 0px 0px 20px 0px;
+}
+
+.InfoCategoryTitleClass {	
+    font-weight: bold;	
+}
+
+.InfoCategoryItemClass {	
+    padding: 5px;
+    margin-left: 30px;
+}
+

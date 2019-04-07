@@ -1,0 +1,6 @@
+/etc/X11/XF86Config
+/etc/X11/#XF86Config#
+/var/log/XFree86.0.log
+/var/log/#XFree86.0.log#
+/etc/X11/XF86Config.old
+/etc/X11/#XF86Config.old#

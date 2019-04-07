@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Chat - Treehouse City Guide</title>
+<meta name="Description" content="Chat with other folk on the Treehouse">
+<meta name="Keywords" content="Chat,Free Chat,Images,Open Source,AJAX,XMLHttpRequest,Javascript,Chat Room">
+<link href="/guide/guide.css" rel="stylesheet" type="text/css">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link href="/chat/chat.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/chat/jsinclude?lang=en"></script>
+<script type="text/javascript" src="/chat/thchat.js"></script>
+</head>
+
+<body onLoad="ci();">
+   <div id="rightbar">Chatters:<div id="userlist"><span class="gaway"><img class="flag" border="0" src="/i/flag/ro.gif"><a>Guest 28106</a></span><span class="ghere"><img class="flag" border="0" src="/i/flag/us.gif"><a>Jessica</a></span><span class="uhere"><img class="flag" border="0" src="/i/flag/cn.gif"><a target="_blank" href="/users/wtanaka?lang=en">wtanaka</a></span><span class="gaway"><img class="flag" border="0" src="/i/flag/de.gif"><a>Guest 29125</a></span><span class="uhere"><img class="flag" border="0" src="/i/flag/us.gif"><a target="_blank" href="/users/BrandonCsSanders?lang=en">BrandonCsSanders</a></span></div></div>
+
+
+      <a name="chat"></a>
+      <div id="chatroom" class="chatroomnojs">
+      <p class="msg"><span class="tstamp">12:06:05</span> <span class="uname">BrandonCsSanders:</span> <span class="msgtxt">then I delete every blank line</span></p><p class="msg"><span class="tstamp">12:06:55</span> <span class="uname">BrandonCsSanders:</span> <span class="msgtxt">ohh, what about wrapping long lines?</span></p><p class="msg"><span class="tstamp">12:06:55</span> <span class="uname">wtanaka:</span> <span class="msgtxt">cat ~/.indent.pro -bap
+-bl
+-bli0
+-i3
+-npsl
+-ts3</span></p><p class="msg"><span class="tstamp">12:07:13</span> <span class="uname">wtanaka:</span> <span class="msgtxt">i haven't used indent in forever though, so i'm not sure what that does.  <img alt="smiley" src="/i/m_smile.gif"></span></p><p class="msg"><span class="tstamp">12:08:02</span> <span class="uname">wtanaka:</span> <span class="msgtxt">for this purpose, i wouldn't.  I usually wrap at 78 characters or something.</span></p><p class="msg"><span class="tstamp">12:09:33</span> <span class="nick">Guest 96550:</span> <span class="msgtxt">hi</span></p><p class="msg"><span class="tstamp">12:10:04</span> <span class="uname">wtanaka:</span> <span class="msgtxt">hi there</span></p><p class="msg"><span class="tstamp">12:11:01</span> <span class="nick">Guest 96550:</span> <span class="msgtxt">can I download source of this AJAX chat or not? :)</span></p><p class="msg"><span class="tstamp">12:11:06</span> <span class="nick">Jessica:</span> <span class="msgtxt">If you're here to talk about A.J.A.X., check
+out the room dedicated to it by clicking on 'Switch Room' up above</span></p><p class="msg"><span class="tstamp">12:11:34</span> <span class="nick">Guest 96550:</span> <span class="msgtxt">ok Jessica , thanks</span></p><p class="msg"><span class="tstamp">12:11:39</span> <span class="nick">Jessica:</span> <span class="msgtxt">You're welcome!</span></p><p class="msg"><span class="tstamp">12:12:33</span> <span class="uname">wtanaka:</span> <span class="msgtxt">96550, yep.  see "About this Chat"</span></p><p class="msg"><span class="tstamp">12:14:56</span> <span class="uname">BrandonCsSanders:</span> <span class="msgtxt">It seems like we want the patches to be legible</span></p><p class="msg"><span class="tstamp">12:15:17</span> <span class="uname">BrandonCsSanders:</span> <span class="msgtxt">and normal indentation would help with that</span></p><p class="msg"><span class="tstamp">12:15:28</span> <span class="uname">BrandonCsSanders:</span> <span class="msgtxt">indent -gnu -i0 -bli0 -sob -l1000 -nbap thchat.js</span></p><p class="msg"><span class="tstamp">12:15:47</span> <span class="uname">BrandonCsSanders:</span> <span class="msgtxt">makes the file flat with no blank lines</span></p><p class="msg"><span class="tstamp">12:16:07</span> <span class="uname">BrandonCsSanders:</span> <span class="msgtxt">that is no indented lines and no blank lines</span></p><p class="msg"><span class="tstamp">12:16:27</span> <span class="uname">wtanaka:</span> <span class="msgtxt">yeah, especially if they get somewhat big, which would be nice to avoid anyway, it will help to have things split into separate lines</span></p><p class="action"><span class="tstamp">12:16:53</span> <span class="uname">wtanaka</span> <span class="msgtxt">bows to the indent guru</span></p><p class="msg"><span class="tstamp">12:17:32</span> <span class="uname">BrandonCsSanders:</span> <span class="msgtxt">I've never used indent before tonight</span></p><p class="msg"><span class="tstamp">12:17:44</span> <span class="uname">BrandonCsSanders:</span> <span class="msgtxt">I've just been using the info page and trial and error</span></p><p class="msg"><span class="tstamp">12:18:00</span> <span class="uname">BrandonCsSanders:</span> <span class="msgtxt"><img alt="smiley" src="/i/m_tongueout.gif"></span></p><p class="action"><span class="tstamp">12:18:35</span> <span class="uname">wtanaka</span> <span class="msgtxt">remembers there was a reason he stopped using indent.</span></p><script type="text/javascript">
+//<![CDATA[
+settimestamp("1127416963");
+//]]
+
+</script></div>
+
+      <div id="previewbox"></div>
+      <a name="input"></a>
+      <form name="inputform" id="inputform" class="inputnojs"
+method="POST" action="/chat/?sa&amp;lang=en#input">
+         <input type="text" id="text" name="text">
+         <input type="submit" value="Send">
+         <span id="buttons"></span>
+         <br>
+         Chat as: <label for=usernameradio><input CHECKED id=usernameradio type="radio" name="sendas" value="U">BrandonCsSanders</label><input  type="radio" name="sendas" value="N"><input type="text" id="nick" name="nick" onchange="setnick(this.value)" value="BrandonCsSanders">
+
+      </form>
+
+      <div id="status"></div>
+<span class="hidden" id="loading">Checking</span>
+</body>
+</html>

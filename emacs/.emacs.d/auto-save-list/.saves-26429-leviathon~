@@ -1,0 +1,10 @@
+/etc/group
+/etc/#group#
+/etc/passwd
+/etc/#passwd#
+/etc/samba/smb.conf.baroque
+/etc/samba/#smb.conf.baroque#
+/etc/samba/smb.conf
+/etc/samba/#smb.conf#
+/etc/hosts
+/etc/#hosts#

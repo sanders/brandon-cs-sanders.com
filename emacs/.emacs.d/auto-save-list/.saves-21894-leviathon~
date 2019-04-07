@@ -1,0 +1,16 @@
+/etc/rc.d/init.d/named
+/etc/rc.d/init.d/#named#
+/etc/hosts
+/etc/#hosts#
+/etc/resolv.conf
+/etc/#resolv.conf#
+/chroot/named/etc/named.conf
+/chroot/named/etc/#named.conf#
+/chroot/named/etc/namedb/solseed.net.zone
+/chroot/named/etc/namedb/#solseed.net.zone#
+/chroot/named/etc/namedb/named.local
+/chroot/named/etc/namedb/#named.local#
+/chroot/named/etc/namedb/solseed.net.local
+/chroot/named/etc/namedb/#solseed.net.local#
+/chroot/named/etc/namedb/named.ca
+/chroot/named/etc/namedb/#named.ca#

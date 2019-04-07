@@ -1,0 +1,67 @@
+html,body{height:100%}
+.containerjs{height:100%}
+
+div#expanding{margin-left:135px}
+.expandingjs{height:100%}
+
+div#rightbar{overflow:auto;float:right;width:144px;margin-left:5px;background:#ffe;border:1px
+solid #ddc;padding:3px;font-size:0.9em;font-family:"Verdana","Arial","Helvetica",sans-serif}
+.rightbarjs{height:77%}
+span.uhere,span.ghere,span.uaway,span.gaway{display:block}
+span.uhere a{color:#333;font-weight:bold}
+span.ghere a{color:#333}
+span.uaway a{color:#AAA;font-weight:bold}
+span.gaway a{color:#AAA}
+img.flag{margin-right:3px;}
+
+div#chatroom{background:white;border:1px solid
+black;padding:2px;font-size:0.9em}
+.chatroomnojs{margin-right:155px}
+.chatroomjs{height:70%;overflow:auto}
+.msg,.user,.guest{display:block;margin:0px;padding:0px}
+.action{display:block;margin:0px;padding:0px;color:#060;font-style:italic}
+.announce{display:block;margin:0px;margin-left:2em;padding:0px;color:purple}
+p.action,p.msg,p.announce{border-top:1px solid #f0f0f0}
+.tstamp{color:#B0C4DE}
+.nick{color:#777;font-weight:bold}
+.uname{color:black;font-weight:bold}
+
+div.previewboxjs{height:7%;overflow:auto;background:#eee;border:1px solid
+#ddd;margin-top:2px;margin-bottom:2px;padding:2px}
+span.previewtitle{font-weight:bold;margin-left:1em;margin-right:1em}
+#preview a,
+#chatroom a{border-bottom:1px dashed
+#036;text-decoration:none}
+#preview a:visited,
+#chatroom a:visited {border-bottom:1px dashed
+#306;text-decoration:none}
+
+form#inputform{margin:0px;padding:0px;background:#fff;margin-top:2px;padding:2px;border:1px
+solid #ddd;font-size:0.9em;font-family:"Verdana","Arial","Helvetica",sans-serif}
+.inputnojs{}
+.inputjs{height:15%;overflow:auto}
+input#nick{width:5.5em}
+input#text{width:20em}
+input.button{padding:0px}
+
+img.smileytrigger{margin-right:2px;margin-bottom:-3px}
+div.smileydiv{position:absolute;width:0px;height:0px;z-index:20;background:white;visibility:hidden;overflow:auto;border:1px
+solid silver}
+
+button.colorpatch{width:20px;height:20px}
+img.colortrigger{margin-left:2px;margin-bottom:-3px}
+
+span#loading{background:transparent;color:red;position:fixed;top:0px;right:0px}
+.hidden{visibility:hidden}
+.visible{visibility:visible}
+
+a[rel~="external"],a.external{
+padding-right:12px;
+background:url(external.gif) no-repeat center right;
+}
+
+a.chatlink{padding-left:0.6em;padding-right:0.6em}
+a.chatlink:visited {}
+a.chatlink:hover {background:#bbddbb}
+
+td.roomcell{width:50%;vertical-align:top;background:#f7fff7}

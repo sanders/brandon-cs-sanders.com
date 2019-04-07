@@ -1,0 +1,380 @@
+var LANG='en';
+var ACTION_PREFIX='/me ';
+var UNK_NICK='Unknown';
+var CHAT_MAX_SMILEYS=10;
+var PREVIEW='Preview';
+var URL_BASE='http://test.brandon-cs-sanders.com/chat/';
+var LINKBUTTON='Link';
+var BOLDBUTTON='Bold';
+var ITALBUTTON='Italic';
+var LINKINSTR='Enter the visible text for your link';
+var BOLDINSTR='Enter the text you would like to make bold';
+var ITALINSTR='Enter the text you would like to make italicised';
+var LINKPROMPT='Enter the address to link to:';
+var LINKDESCPROMPT='Enter a description to appear as a tooltip, or press OK to skip:';
+var MORE='More>>';
+var IDLETIME=10*60;
+var IDLEINHEADER=120;
+var COLORS=new Array(
+		     "#8470FF",
+		     "black",
+		     "blue",
+		     "brown",
+		     "cadetblue",
+		     "coral",
+		     "crimson",
+		     "darkgoldenrod",
+		     "darkgreen",
+		     "darkorange",
+		     "darkslateblue",
+		     "darkslategray",
+		     "fuchsia",
+		     "gray",
+		     "green",
+		     "hotpink",
+		     "lightcoral",
+		     "lightslategray",
+		     "maroon",
+		     "mediumorchid",
+		     "navy",
+		     "olive",
+		     "palevioletred",
+		     "purple",
+		     "red",
+		     "seagreen",
+		     "slateblue",
+		     "steelblue",
+		     "teal",
+		     "tomato"
+		     );
+
+var CHAT_SMILEYS=new Array();
+var CHATPREFIXES=new Array();
+
+CHAT_SMILEYS[":love:"]='<img src="/i/i_love.gif">';
+CHAT_SMILEYS[":doh:"]='<img src="/i/homer_doh.gif">';
+CHAT_SMILEYS[":fuckyou:"]='<img src="/i/lazydoublefinger.gif">';
+CHAT_SMILEYS[":penguin:"]='<img src="/i/i_penguin.gif">';
+CHAT_SMILEYS[":thc:"]='<img src="/i/g_thc.gif">';
+CHAT_SMILEYS[":ajax:"]='<img src="/i/g_ajax.gif">';
+CHAT_SMILEYS[":ninja:"]='<img src="/i/i_ninja.gif">';
+CHAT_SMILEYS[":arrow:"]='<img src="/i/s_arrow.gif">';
+CHAT_SMILEYS[":cry:"]='<img src="/i/s_cry.gif">';
+CHAT_SMILEYS[":evil:"]='<img src="/i/s_evil.gif">';
+CHAT_SMILEYS[":foot:"]='<img src="/i/m_foot.gif">';
+CHAT_SMILEYS[":idea:"]='<img src="/i/s_idea.gif">';
+CHAT_SMILEYS[":lol:"]='<img src="/i/s_lol.gif">';
+CHAT_SMILEYS[":mrgreen:"]='<img src="/i/s_mrgreen.gif">';
+CHAT_SMILEYS[":oops:"]='<img src="/i/m_embarassed.gif">';
+CHAT_SMILEYS[":redface:"]='<img src="/i/s_redface.gif">';
+CHAT_SMILEYS[":roll:"]='<img src="/i/s_rolleyes.gif">';
+CHAT_SMILEYS[":sealed:"]='<img src="/i/i_sealed.gif">';
+CHAT_SMILEYS[":msealed:"]='<img src="/i/m_sealed.gif">';
+CHAT_SMILEYS[":shock:"]='<img src="/i/i_shocked.gif">';
+CHAT_SMILEYS[":twisted:"]='<img src="/i/s_twisted.gif">';
+CHAT_SMILEYS["{:)"]='<img src="/i/i_chinese.gif">';
+CHAT_SMILEYS[":!:"]='<img src="/i/m_exclaim.gif">';
+CHAT_SMILEYS["=$"]='<img src="/i/m_moneyinmouth.gif">';
+CHAT_SMILEYS[":&#124;"]='<img src="/i/s_neutral.gif">';
+CHAT_SMILEYS["=))"]='<img src="/i/g_lol.gif">';
+CHAT_SMILEYS["=)"]='<img src="/i/m_smile.gif">';
+CHAT_SMILEYS[":?:"]='<img src="/i/s_question.gif">';
+CHAT_SMILEYS["=S"]='<img src="/i/i_unsure.gif">';
+CHAT_SMILEYS["=o"]='<img src="/i/m_surprised.gif">';
+CHAT_SMILEYS[":|"]='<img src="/i/s_neutral.gif">';
+CHAT_SMILEYS[";)"]='<img src="/i/m_wink.gif">';
+CHAT_SMILEYS["=("]='<img src="/i/m_frown.gif">';
+CHAT_SMILEYS["=*"]='<img src="/i/m_kiss.gif">';
+CHAT_SMILEYS["=/"]='<img src="/i/m_undecided.gif">';
+CHAT_SMILEYS["=D)"]='<img src="/i/g_welldone.gif">';
+CHAT_SMILEYS["=D"]='<img src="/i/m_laughing.gif">';
+CHAT_SMILEYS["=X"]='<img src="/i/i_barf.gif">';
+CHAT_SMILEYS["=P"]='<img src="/i/m_tongueout.gif">';
+CHAT_SMILEYS["=~("]='<img src="/i/m_cry.gif">';
+CHAT_SMILEYS["B)"]='<img src="/i/m_cool.gif">';
+CHAT_SMILEYS["O=."]='<img src="/i/m_innocent.gif">';
+CHAT_SMILEYS["#-o"]='<img src="/i/doh.gif">';
+CHAT_SMILEYS["X("]='<img src="/i/m_yell.gif">';
+
+for(var src in CHAT_SMILEYS)
+{
+  CHATPREFIXES[src.charAt(0)]=true;
+}
+
+function smileys(m)
+{
+  var tr='';
+  var tc=0;
+  var c=0;
+  for(var i=0;i<m.length;++i)
+    {
+      if(m.charAt(i)=='<')
+	{
+	  ++tc;
+	  tr+='<';
+	}
+      else if(m.charAt(i)=='>')
+	{
+	  --tc;
+	  tr+='>';
+	}
+      else
+	{
+	  var done=false;
+	  if(tc==0&&CHATPREFIXES[m.charAt(i)]&&c<CHAT_MAX_SMILEYS)
+	    {
+	      for(var s in CHAT_SMILEYS)
+		{
+		  var d=CHAT_SMILEYS[s];
+		  if(!done&&m.substr(i,s.length)==s)
+		    {
+		      done=true;
+		      c++;
+		      i+=s.length-1;
+		      tr+=d;
+		      break;
+		    }
+		}
+	    }
+	  if(!done)tr+=m.charAt(i);
+	}
+    }
+  return tr;
+}
+
+
+var G2P=new Array();
+
+G2P["tf"]="French+Southern+and+Antarctic+Lands";
+G2P["hm"]="Heard+Island+and+McDonald+Islands";
+G2P["aq"]="Antarctica";
+G2P["dz"]="Algeria";
+G2P["ao"]="Angola";
+G2P["bj"]="Benin";
+G2P["bw"]="Botswana";
+G2P["bf"]="Burkina+Faso";
+G2P["bi"]="Burundi";
+G2P["cm"]="Cameroon";
+G2P["cv"]="Cape+Verde";
+G2P["cf"]="Central+African+Republic";
+G2P["td"]="Chad";
+G2P["km"]="Comoros";
+G2P["cd"]="D.R.Congo";
+G2P["dj"]="Djibouti";
+G2P["eg"]="Egypt";
+G2P["gq"]="Equatorial+Guinea";
+G2P["er"]="Eritrea";
+G2P["et"]="Ethiopia";
+G2P["ga"]="Gabon";
+G2P["gm"]="Gambia";
+G2P["gh"]="Ghana";
+G2P["gn"]="Guinea";
+G2P["gw"]="Guinea-Bissau";
+G2P["ci"]="Ivory+Coast";
+G2P["ke"]="Kenya";
+G2P["ls"]="Lesotho";
+G2P["lr"]="Liberia";
+G2P["ly"]="Libya";
+G2P["mg"]="Madagascar";
+G2P["mw"]="Malawi";
+G2P["ml"]="Mali";
+G2P["mr"]="Mauritania";
+G2P["mu"]="Mauritius";
+G2P["ma"]="Morocco";
+G2P["mz"]="Mozambique";
+G2P["yt"]="Mayotte";
+G2P["na"]="Namibia";
+G2P["ne"]="Niger";
+G2P["ng"]="Nigeria";
+G2P["re"]="Reunion";
+G2P["rw"]="Rwanda";
+G2P["sh"]="Saint+Helena";
+G2P["st"]="Sao+Tome+and+Principe";
+G2P["sn"]="Senegal";
+G2P["sc"]="Seychelles";
+G2P["sl"]="Sierra+Leone";
+G2P["so"]="Somalia";
+G2P["za"]="South+Africa";
+G2P["bv"]="Bouvet+Island";
+G2P["sd"]="Sudan";
+G2P["sz"]="Swaziland";
+G2P["tz"]="Tanzania";
+G2P["tg"]="Togo";
+G2P["tn"]="Tunisia";
+G2P["ug"]="Uganda";
+G2P["eh"]="Western+Sahara";
+G2P["zm"]="Zambia";
+G2P["zw"]="Zimbabwe";
+G2P["af"]="Afghanistan";
+G2P["az"]="Azerbaijan";
+G2P["bd"]="Bangladesh";
+G2P["bt"]="Bhutan";
+G2P["bn"]="Brunei";
+G2P["kh"]="Cambodia";
+G2P["cn"]="China";
+G2P["cx"]="Christmas+Island";
+G2P["tl"]="East+Timor";
+G2P["hk"]="Hong+Kong";
+G2P["in"]="India";
+G2P["io"]="BIOT";
+G2P["id"]="Indonesia";
+G2P["cc"]="Cocos+Islands";
+G2P["jp"]="Japan";
+G2P["kz"]="Kazakhstan";
+G2P["kp"]="Korea%2C+North";
+G2P["kr"]="Korea%2C+South";
+G2P["kg"]="Kyrgyzstan";
+G2P["la"]="Laos";
+G2P["mo"]="Macau";
+G2P["my"]="Malaysia";
+G2P["mv"]="Maldives";
+G2P["mn"]="Mongolia";
+G2P["mm"]="Myanmar";
+G2P["np"]="Nepal";
+G2P["pk"]="Pakistan";
+G2P["ph"]="Philippines";
+G2P["sg"]="Singapore";
+G2P["lk"]="Sri+Lanka";
+G2P["tw"]="Taiwan";
+G2P["tj"]="Tajikistan";
+G2P["th"]="Thailand";
+G2P["tr"]="Turkey";
+G2P["tm"]="Turkmenistan";
+G2P["uz"]="Uzbekistan";
+G2P["vn"]="Vietnam";
+G2P["as"]="American+Samoa";
+G2P["au"]="Australia";
+G2P["ck"]="Cook+Islands";
+G2P["fj"]="Fiji";
+G2P["gu"]="Guam";
+G2P["ki"]="Kiribati";
+G2P["mh"]="Marshall+Islands";
+G2P["fm"]="Micronesia%2C+Federal+States+of";
+G2P["nr"]="Nauru";
+G2P["nc"]="New+Caledonia";
+G2P["nz"]="New+Zealand";
+G2P["nu"]="Niue";
+G2P["nf"]="Norfolk+Island";
+G2P["pw"]="Palau";
+G2P["pg"]="Papua+New+Guinea";
+G2P["pn"]="Pitcairn+Islands";
+G2P["ws"]="Samoa";
+G2P["sb"]="Solomon+Islands";
+G2P["pf"]="Tahiti";
+G2P["tk"]="Tokelau";
+G2P["to"]="Tonga";
+G2P["tv"]="Tuvalu";
+G2P["vu"]="Vanuatu";
+G2P["wf"]="Wallis+and+Futuna";
+G2P["ag"]="Antigua+and+Barbuda";
+G2P["aw"]="Aruba";
+G2P["bs"]="Bahamas";
+G2P["bb"]="Barbados";
+G2P["bm"]="Bermuda";
+G2P["vg"]="British+Virgin+Islands";
+G2P["ky"]="Cayman+Islands";
+G2P["cu"]="Cuba";
+G2P["dm"]="Dominica";
+G2P["do"]="Dominican+Republic";
+G2P["gd"]="Grenada";
+G2P["gp"]="Guadeloupe";
+G2P["ht"]="Haiti";
+G2P["jm"]="Jamaica";
+G2P["mq"]="Martinique";
+G2P["ms"]="Montserrat";
+G2P["an"]="Netherlands+Antilles";
+G2P["pr"]="Puerto+Rico";
+G2P["kn"]="Saint+Kitts+and+Nevis";
+G2P["lc"]="Saint+Lucia";
+G2P["pm"]="Saint+Pierre+and+Miquelon";
+G2P["vc"]="Saint+Vincent+and+the+Grenadines";
+G2P["gs"]="South+Georgia+and+the+South+Sandwich+Islands";
+G2P["tt"]="Trinidad+and+Tobago";
+G2P["tc"]="Turks+and+Caicos+Islands";
+G2P["vi"]="Virgin+Islands";
+G2P["bz"]="Belize";
+G2P["cr"]="Costa+Rica";
+G2P["sv"]="El+Salvador";
+G2P["gt"]="Guatemala";
+G2P["hn"]="Honduras";
+G2P["ni"]="Nicaragua";
+G2P["pa"]="Panama";
+G2P["al"]="Albania";
+G2P["ad"]="Andorra";
+G2P["am"]="Armenia";
+G2P["at"]="Austria";
+G2P["by"]="Belarus";
+G2P["be"]="Belgium";
+G2P["ba"]="Bosnia";
+G2P["bg"]="Bulgaria";
+G2P["hr"]="Croatia";
+G2P["cy"]="Cyprus";
+G2P["cz"]="Czech+Republic";
+G2P["dk"]="Denmark";
+G2P["ee"]="Estonia";
+G2P["fo"]="Faroe+Islands";
+G2P["fi"]="Finland";
+G2P["fr"]="France";
+G2P["ge"]="Georgia";
+G2P["de"]="Germany";
+G2P["gi"]="Gibraltar";
+G2P["gr"]="Greece";
+G2P["gl"]="Greenland";
+G2P["hu"]="Hungary";
+G2P["is"]="Iceland";
+G2P["ie"]="Ireland";
+G2P["it"]="Italy";
+G2P["lv"]="Latvia";
+G2P["li"]="Liechtenstein";
+G2P["lt"]="Lithuania";
+G2P["lu"]="Luxembourg";
+G2P["mk"]="Macedonia";
+G2P["mt"]="Malta";
+G2P["md"]="Moldova";
+G2P["mc"]="Monaco";
+G2P["nl"]="Netherlands";
+G2P["no"]="Norway";
+G2P["pl"]="Poland";
+G2P["pt"]="Portugal";
+G2P["ro"]="Romania";
+G2P["ru"]="Russia";
+G2P["sm"]="San+Marino";
+G2P["sk"]="Slovakia";
+G2P["si"]="Slovenia";
+G2P["es"]="Spain";
+G2P["sj"]="Svalbard";
+G2P["se"]="Sweden";
+G2P["ch"]="Switzerland";
+G2P["ua"]="Ukraine";
+G2P["gb"]="United+Kingdom";
+G2P["va"]="Vatican+City";
+G2P["bh"]="Bahrain";
+G2P["ir"]="Iran";
+G2P["iq"]="Iraq";
+G2P["il"]="Israel";
+G2P["jo"]="Jordan";
+G2P["kw"]="Kuwait";
+G2P["lb"]="Lebanon";
+G2P["om"]="Oman";
+G2P["qa"]="Qatar";
+G2P["sa"]="Saudi+Arabia";
+G2P["sy"]="Syria";
+G2P["ae"]="United+Arab+Emirates";
+G2P["ye"]="Yemen";
+G2P["ca"]="Canada";
+G2P["mx"]="Mexico";
+G2P["us"]="United+States+of+America";
+G2P["ar"]="Argentina";
+G2P["bo"]="Bolivia";
+G2P["br"]="Brazil";
+G2P["cl"]="Chile";
+G2P["co"]="Colombia";
+G2P["ec"]="Ecuador";
+G2P["fk"]="Falkland+Islands";
+G2P["gf"]="French+Guiana";
+G2P["gy"]="Guyana";
+G2P["py"]="Paraguay";
+G2P["pe"]="Peru";
+G2P["sr"]="Suriname";
+G2P["uy"]="Uruguay";
+G2P["ve"]="Venezuela";
